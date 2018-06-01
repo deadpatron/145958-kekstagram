@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр Межевикин](https://up.htmlacademy.ru/javascript/14/user/145958).
-* Наставник: `Максим Лыков`.
+* Наставник: [Максим Лыков](https://up.htmlacademy.ru/javascript/14/user/529621).
 
 ---
 
