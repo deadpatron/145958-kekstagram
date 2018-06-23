@@ -94,13 +94,13 @@ renderBigPicture.querySelector('.likes-count').textContent = posts[0].likes;
 renderBigPicture.querySelector('.comments-count').textContent = posts[0].comments.length;
 
 var avatarArray = renderBigPicture.querySelectorAll('.social__comment .social__picture');
-for (var i = 0; i < avatarArray.length; i++) {
-  avatarArray[i].src = 'img/avatar-' + Math.ceil(Math.random() * 5) + '.svg';
+for (var avatarIndex = 0; avatarIndex < avatarArray.length; avatarIndex++) {
+  avatarArray[avatarIndex].src = 'img/avatar-' + Math.ceil(Math.random() * 5) + '.svg';
 }
 
 var commentsArray = renderBigPicture.querySelectorAll('.social__comments .social__text');
-for (var i = 0; i < commentsArray.length; i++) {
-  commentsArray[i].textContent = posts[Math.floor(Math.random() * posts.length)].comments.join(' ');
+for (var commentIndex = 0; commentIndex < commentsArray.length; commentIndex++) {
+  commentsArray[commentIndex].textContent = posts[Math.floor(Math.random() * posts.length)].comments.join(' ');
 }
 
 renderBigPicture.querySelector('.social__caption').textContent = posts[0].description;
