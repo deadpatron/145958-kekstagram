@@ -92,13 +92,19 @@ renderBigPicture.classList.remove('hidden');
 renderBigPicture.querySelector('.big-picture__img').src = posts[0].url;
 renderBigPicture.querySelector('.likes-count').textContent = posts[0].likes;
 renderBigPicture.querySelector('.comments-count').textContent = posts[0].comments.length;
-// на двух почему-то не работает querySelectorAll
-renderBigPicture.querySelector('.social__comments').querySelector('img').src =
-  'img/avatar-' + Math.ceil(Math.random() * 5) + '.svg';
-renderBigPicture.querySelector('.social__comments').querySelector('.social__text').textContent =
-  posts[0].comments.join('');
-renderBigPicture.querySelector('.social__caption').textContent = posts[0].description;
-// Немогу понять почему не прячется
-var userView = document.querySelector('.social__comment-count', '.social__comment-count');
-userView.classList.add('visually-hidden');
 
+var avatarArray = renderBigPicture.querySelectorAll('.social__comment .social__picture');
+for (var i = 0; i < avatarArray.length; i++) {
+  avatarArray[i].src = 'img/avatar-' + Math.ceil(Math.random() * 5) + '.svg';
+}
+
+var commentsArray = renderBigPicture.querySelectorAll('.social__comments .social__text');
+for (var i = 0; i < commentsArray.length; i++) {
+  commentsArray[i].textContent = posts[Math.floor(Math.random() * posts.length)].comments.join(' ');
+}
+
+renderBigPicture.querySelector('.social__caption').textContent = posts[0].description;
+document.querySelectorAll('.social__comment-count, .social__loadmore')
+  .forEach(function (item) {
+    item.classList.add('visually-hidden');
+  });
