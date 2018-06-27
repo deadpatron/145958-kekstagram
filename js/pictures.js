@@ -88,7 +88,7 @@ for (var i = 0; i < posts.length; i++) {
 similarListElemnt.appendChild(fragment);
 
 var renderBigPicture = document.querySelector('.big-picture');
-renderBigPicture.classList.remove('hidden');
+// renderBigPicture.classList.remove('hidden');
 renderBigPicture.querySelector('.big-picture__img').src = posts[0].url;
 renderBigPicture.querySelector('.likes-count').textContent = posts[0].likes;
 renderBigPicture.querySelector('.comments-count').textContent = posts[0].comments.length;
@@ -108,3 +108,18 @@ document.querySelectorAll('.social__comment-count, .social__loadmore')
   .forEach(function (item) {
     item.classList.add('visually-hidden');
   });
+
+var upload = document.querySelector('#upload-file');
+var uploadImgOverlay = document.querySelector('.img-upload__overlay');
+var uploadCancel = document.querySelector('#upload-cancel');
+var changeElement = null;
+var onImgOverlayChange = function () {
+  if (changeElement) {
+    uploadImgOverlay.classList.add('hidden');
+  }
+  changeElement = uploadImgOverlay.classList.remove('hidden');
+};
+upload.addEventListener('change', onImgOverlayChange);
+uploadCancel.addEventListener('click', function () {
+  uploadImgOverlay.classList.add('hidden');
+});
