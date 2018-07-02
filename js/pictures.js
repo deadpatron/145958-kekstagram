@@ -13,8 +13,8 @@ var getLikes = function () {
   var maxLikes = 200;
   var minLikes = 15;
   var likesValue = Math.floor(Math.random() * maxLikes);
-  while (likesValue < minLikes) {
-    likesValue++;
+  if (likesValue < minLikes) {
+    likesValue = minLikes;
   }
   return likesValue;
 };
@@ -123,3 +123,21 @@ upload.addEventListener('change', onImgOverlayChange);
 uploadCancel.addEventListener('click', function () {
   uploadImgOverlay.classList.add('hidden');
 });
+
+var scaleLineWidth = document.querySelector('.scale__line');
+var scalePinPosition = document.querySelector('.scale__pin');
+var scaleLavelWidth = document.querySelector('.scale__level');
+var scale = document.querySelector('.scale');
+var effect = document.querySelector('.effects__radio');
+var imgPreview = document.querySelector('.img-upload__preview');
+var changeScaleMouseUp = function () {
+  var scaleValue = scalePinPosition.offsetLeft * 100 / scaleLineWidth;
+  if (effect.id === 'effect-none') {
+    scale.classList.add('hidden');
+  }
+  if (effect.id === 'effect-chrome') {
+    imgPreview.style.filter = 'grayscale(' + scaleValue + ')';
+    scaleLavelWidth.style.width = scaleValue + '%';
+  }
+};
+scalePinPosition.addEventListener('mouseUp', changeScaleMouseUp);
