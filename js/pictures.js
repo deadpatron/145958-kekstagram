@@ -136,7 +136,7 @@ var changeScaleMouseUp = function () {
     scale.classList.add('hidden');
   }
   if (effect.id === 'effect-chrome') {
-    imgPreview.style.filter = 'grayscale(' + scaleValue + ')';
+    imgPreview.style.filter = 'grayscale(' + scaleValue / 100 + ')';
     scaleLavelWidth.style.width = scaleValue + '%';
   }
 };
