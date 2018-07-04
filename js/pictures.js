@@ -130,19 +130,25 @@ var scaleLavelWidth = document.querySelector('.scale__level');
 var scale = document.querySelector('.scale');
 var imgPreview = document.querySelector('.img-upload__preview');
 var effectList = document.querySelector('.effects__list');
+var currentEffect = null;
 var getFilterClick = function () {
-  var scaleValue = Math.ceil(scalePinPosition.offsetLeft * 100 / scaleLineWidth.offsetWidth);
+  imgPreview.classList.remove(currentEffect);
   var effect = document.querySelector('.effects__radio:checked').value;
-  if (effect === 'none') {
-    scale.classList.add('hidden');
-    imgPreview.style.filter = null;
-  } else if (effect === 'chrome') {
-    scale.classList.remove('hidden');
-    imgPreview.style.filter = 'grayscale(' + scaleValue / 100 + ')';
-  } else if (effect === 'sepia') {
-    scale.classList.remove('hidden');
-    imgPreview.style.filter = 'sepia(' + scaleValue / 100 + ')';
-  }
+  currentEffect = 'effects__preview--' + effect;
+  imgPreview.classList.add(currentEffect);
 };
 
+
 effectList.addEventListener('click', getFilterClick);
+
+/*
+
+  var scaleValue = Math.ceil(scalePinPosition.offsetLeft * 100 / scaleLineWidth.offsetWidth);
+
+    var effects = {
+    'chrome': 'grayscale',
+    'sepia': 'sepia',
+    'marvin': 'invert',
+    'phobos': 'blur',
+    'heat': 'brightness'
+  };*/
