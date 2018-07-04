@@ -88,7 +88,6 @@ for (var i = 0; i < posts.length; i++) {
 similarListElemnt.appendChild(fragment);
 
 var renderBigPicture = document.querySelector('.big-picture');
-// renderBigPicture.classList.remove('hidden');
 renderBigPicture.querySelector('.big-picture__img').src = posts[0].url;
 renderBigPicture.querySelector('.likes-count').textContent = posts[0].likes;
 renderBigPicture.querySelector('.comments-count').textContent = posts[0].comments.length;
@@ -132,7 +131,6 @@ var imgPreview = document.querySelector('.img-upload__preview');
 var effectList = document.querySelector('.effects__list');
 var currentEffect = null;
 var effect = null;
-
 var getFilterClick = function () {
   imgPreview.style.filter = null;
   imgPreview.classList.remove(currentEffect);
@@ -145,7 +143,6 @@ var getFilterClick = function () {
   currentEffect = 'effects__preview--' + effect;
   imgPreview.classList.add(currentEffect);
 };
-
 var chacngeFilterMouseup = function () {
   var scaleValue = Math.ceil(scalePinPosition.offsetLeft * 100 / scaleLineWidth.offsetWidth);
   switch (effect) {
@@ -167,18 +164,21 @@ var chacngeFilterMouseup = function () {
   }
 };
 
+var pictures = document.querySelector('.pictures');
+var targetPictures = document.querySelector('.picture__link');
+var closeBigPicture = document.querySelector('.big-picture__cancel');
+var onBigPictureClick = function () {
+  if (pictures.querySelector('.picture__link') !== targetPictures) {
+    return;
+  } else {
+    renderBigPicture.classList.remove('hidden');
+  }
+};
+var onCloseBigPicture = function () {
+  renderBigPicture.classList.add('hidden');
+};
+
+closeBigPicture.addEventListener('click', onCloseBigPicture);
+pictures.addEventListener('click', onBigPictureClick);
 effectList.addEventListener('click', getFilterClick);
 scalePinPosition.addEventListener('mouseup', chacngeFilterMouseup);
-
-//    var effects = {
-//    'chrome': 'grayscale',
-//    'sepia': 'sepia',
-//    'marvin': 'invert',
-//    'phobos': 'blur',
-//    'heat': 'brightness'
-//  };
-// Для эффекта «Хром» — filter: grayscale(0..1);
-// Для эффекта «Сепия» — filter: sepia(0..1);
-// Для эффекта «Марвин» — filter: invert(0..100%);
-// Для эффекта «Фобос» — filter: blur(0..3px);
-// Для эффекта «Зной» — filter: brightness(1..3).
