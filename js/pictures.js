@@ -125,7 +125,7 @@ uploadCancel.addEventListener('click', function () {
 
 var scaleLineWidth = document.querySelector('.scale__line');
 var scalePinPosition = document.querySelector('.scale__pin');
-var scaleLavelWidth = document.querySelector('.scale__level');
+// var scaleLavelWidth = document.querySelector('.scale__level');
 var scale = document.querySelector('.scale');
 var imgPreview = document.querySelector('.img-upload__preview');
 var effectList = document.querySelector('.effects__list');
