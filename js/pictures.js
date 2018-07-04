@@ -131,24 +131,54 @@ var scale = document.querySelector('.scale');
 var imgPreview = document.querySelector('.img-upload__preview');
 var effectList = document.querySelector('.effects__list');
 var currentEffect = null;
+var effect = null;
+
 var getFilterClick = function () {
+  imgPreview.style.filter = null;
   imgPreview.classList.remove(currentEffect);
-  var effect = document.querySelector('.effects__radio:checked').value;
+  effect = document.querySelector('.effects__radio:checked').value;
+  if (effect === 'none') {
+    scale.classList.add('hidden');
+  } else {
+    scale.classList.remove('hidden');
+  }
   currentEffect = 'effects__preview--' + effect;
   imgPreview.classList.add(currentEffect);
 };
 
+var chacngeFilterMouseup = function () {
+  var scaleValue = Math.ceil(scalePinPosition.offsetLeft * 100 / scaleLineWidth.offsetWidth);
+  switch (effect) {
+    case 'chrome':
+      imgPreview.style.filter = 'grayscale(' + scaleValue / 100 + ')';
+      break;
+    case 'sepia':
+      imgPreview.style.filter = 'sepia(' + scaleValue / 100 + ')';
+      break;
+    case 'marvin':
+      imgPreview.style.filter = 'invert(' + scaleValue + '%)';
+      break;
+    case 'phobos':
+      imgPreview.style.filter = 'blur(' + scaleValue * 0.03 + 'px)';
+      break;
+    case 'heat':
+      imgPreview.style.filter = 'brightness(' + (scaleValue * 0.02 + 1) + ')';
+      break;
+  }
+};
 
 effectList.addEventListener('click', getFilterClick);
+scalePinPosition.addEventListener('mouseup', chacngeFilterMouseup);
 
-/*
-
-  var scaleValue = Math.ceil(scalePinPosition.offsetLeft * 100 / scaleLineWidth.offsetWidth);
-
-    var effects = {
-    'chrome': 'grayscale',
-    'sepia': 'sepia',
-    'marvin': 'invert',
-    'phobos': 'blur',
-    'heat': 'brightness'
-  };*/
+//    var effects = {
+//    'chrome': 'grayscale',
+//    'sepia': 'sepia',
+//    'marvin': 'invert',
+//    'phobos': 'blur',
+//    'heat': 'brightness'
+//  };
+// Для эффекта «Хром» — filter: grayscale(0..1);
+// Для эффекта «Сепия» — filter: sepia(0..1);
+// Для эффекта «Марвин» — filter: invert(0..100%);
+// Для эффекта «Фобос» — filter: blur(0..3px);
+// Для эффекта «Зной» — filter: brightness(1..3).
