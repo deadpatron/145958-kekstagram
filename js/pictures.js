@@ -19,7 +19,6 @@ var getLikes = function () {
   return likesValue;
 };
 
-
 var getComments = function () {
   var comments = [];
   var commentsArray = [
@@ -165,14 +164,13 @@ var chacngeFilterMouseup = function () {
 };
 
 var pictures = document.querySelector('.pictures');
-var targetPictures = document.querySelector('.picture__link');
 var closeBigPicture = document.querySelector('.big-picture__cancel');
-var onBigPictureClick = function () {
-  if (pictures.querySelector('.picture__link') !== targetPictures) {
+var onBigPictureClick = function (evt) {
+  var target = evt.target;
+  if (target.className !== 'picture__img') {
     return;
-  } else {
-    renderBigPicture.classList.remove('hidden');
   }
+  renderBigPicture.classList.remove('hidden');
 };
 var onCloseBigPicture = function () {
   renderBigPicture.classList.add('hidden');
