@@ -1,29 +1,9 @@
 'use strict';
 
+
+// Отрисовка большого изображения
+// Заменить на реальные значения
 (function () {
-  // отрисовка мелких изображений
-  var similarListElemnt = document.querySelector('.pictures');
-  var similarPictureTemplate = document.querySelector('#picture')
-  .content
-  .querySelector('.picture__link');
-
-  var renderPicture = function (picture) {
-    var pictureElement = similarPictureTemplate.cloneNode(true);
-
-    pictureElement.querySelector('img').src = picture.url;
-    pictureElement.querySelector('.picture__stat--likes').textContent = picture.likes;
-    pictureElement.querySelector('.picture__stat--comments').textContent = picture.comments.length;
-
-    return pictureElement;
-  };
-
-  var fragment = document.createDocumentFragment();
-  for (var i = 0; i < window.posts.length; i++) {
-    fragment.appendChild(renderPicture(window.posts[i]));
-  }
-  similarListElemnt.appendChild(fragment);
-
-  // Отрисовка большого изображения 
   var renderBigPicture = document.querySelector('.big-picture');
   renderBigPicture.querySelector('.big-picture__img').src = window.posts[0].url;
   renderBigPicture.querySelector('.likes-count').textContent = window.posts[0].likes;
@@ -67,3 +47,4 @@
   document.addEventListener('keydown', onCloseKeydown);
   pictures.addEventListener('click', onGalleryClick);
 })();
+
